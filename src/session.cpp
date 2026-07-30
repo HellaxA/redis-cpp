@@ -1,8 +1,8 @@
 #include "session.hpp"
 #include <iostream>
 #include <string>
-#include <string_view>
-#include "resp_parser/resp.hpp"
+#include "resp_parser/resp_converter.hpp"
+#include "commands/input_handler.hpp"
 
 using asio::ip::tcp;
 
@@ -14,16 +14,11 @@ asio::awaitable<void> session(tcp::socket socket) {
 		for (;;) 
 		{
 			std::size_t n = co_await socket.async_read_some(asio::buffer(data), asio::use_awaitable);
-			std::string server_response;
+			std::string client_message(data, n);
 
-			std::string_view received(data, n);
-			if (received == "bulk\n")
-			{
-				server_response = convert_to_bulk_string("PONG");
-			} else 
-			{
-				server_response = convert_to_simple_string("PONG");
-			}
+			// std::string client_message = parse_array(received);
+			handle_command(client_message);
+			std::string server_response = convert_to_simple_string("PONG");
 
 			co_await async_write(socket, asio::buffer(server_response, server_response.length()),
 					asio::use_awaitable);

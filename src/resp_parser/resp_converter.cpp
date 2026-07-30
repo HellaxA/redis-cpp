@@ -1,8 +1,5 @@
 #include <string>
-
-namespace {
-    constexpr std::string CRLF = "\r\n";
-}
+#include "../constants.hpp"
 
 std::string convert_to_simple_string(std::string str) 
 {
