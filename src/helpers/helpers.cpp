@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 
+// could optimize by using string view of the provided string, instead of creating new string for every substring.
 std::vector<std::string> split(const std::string& str, const std::string& delimeter) 
 {
     std::vector<std::string> result;
@@ -24,6 +25,7 @@ std::vector<std::string> split(const std::string& str, const std::string& delime
         end = str.find(delimeter, end);
     }
 
+    // omit adding extra empty string "" in the vector
     if (start < str.length()) {
         result.push_back(str.substr(start));
     }
