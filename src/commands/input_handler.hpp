@@ -1,3 +1,3 @@
 #include <string>
 
-std::string handle_command(std::string input);
+std::string HandleCommand(std::string& input);

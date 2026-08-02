@@ -1,4 +1,7 @@
-#include <string>
+#pragma once
 
-std::string parse_array(std::string str);
-std::string parse_bulk_string(std::string str);
+#include <string>
+#include <vector>
+
+std::vector<std::string> ParseArray(std::string& str);
+std::vector<std::string> ParseBulkString(std::string& str);

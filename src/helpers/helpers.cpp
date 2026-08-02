@@ -3,7 +3,7 @@
 #include <string>
 
 // could optimize by using string view of the provided string, instead of creating new string for every substring.
-std::vector<std::string> split(const std::string& str, const std::string& delimeter) {
+std::vector<std::string> Split(const std::string& str, const std::string& delimeter) {
     std::vector<std::string> result;
     if (str.empty() || delimeter.empty()) {
         return result;
@@ -14,6 +14,7 @@ std::vector<std::string> split(const std::string& str, const std::string& delime
     size_t del_length = delimeter.length();
 
     while (end != std::string::npos) {
+
         std::string element = str.substr(start, end - start);
 
         result.push_back(element);
@@ -29,4 +30,10 @@ std::vector<std::string> split(const std::string& str, const std::string& delime
     }
 
     return result;
+}
+
+std::string ToLower(std::string s) {
+    std::transform(s.begin(), s.end(), s.begin(),
+                   [](unsigned char c) { return std::tolower(c); });
+    return s;
 }

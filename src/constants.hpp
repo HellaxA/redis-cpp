@@ -1,5 +1,4 @@
 #pragma once
-
 #include <string>
 
-inline constexpr std::string CRLF = "\r\n";
+inline std::string CRLF = "\r\n";

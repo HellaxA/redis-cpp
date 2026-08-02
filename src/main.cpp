@@ -71,7 +71,7 @@ int main(int argc, char **argv) {
 
     try {
         asio::io_context io_context;
-        co_spawn(io_context, listener(io_context, 6379), asio::detached);
+        co_spawn(io_context, Listener(io_context, 6379), asio::detached);
         io_context.run();
     } catch(std::exception& e) {
         std::cerr << "Exception: " << e.what() << "\n";
