@@ -4,7 +4,7 @@
 #include "../resp_parser/resp_parser.hpp"
 
 // TODO reference instead of copying
-std::string handle_command(std::string input) {
+std::string handle_command(std::string& input) {
     char data_type = input[0];
 
     if (data_type == '*') {

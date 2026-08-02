@@ -11,8 +11,7 @@ asio::awaitable<void> session(tcp::socket socket) {
 	std::cerr << std::unitbuf;
 	try {
 		char data[1024] = {};
-		for (;;) 
-		{
+		for (;;) {
 			std::size_t n = co_await socket.async_read_some(asio::buffer(data), asio::use_awaitable);
 			std::string client_message(data, n);
 
