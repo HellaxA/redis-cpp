@@ -11,7 +11,7 @@ std::string Set(std::vector<std::string>& input, Store& store) {
         return NULL_BULK_STRING;
     }
 
-    store.Set(input.at(4), input.at(5));
+    store.Set(input.at(4), input.at(6));
 
     return OK_SIMPLE_STRING;
 }
