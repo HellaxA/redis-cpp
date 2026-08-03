@@ -7,7 +7,7 @@ std::string Set(std::vector<std::string>& input, Store& store) {
     size_t vec_len = input.size();
 
     // TODO return error
-    if (vec_len < 5) {
+    if (vec_len < 6) {
         return NULL_BULK_STRING;
     }
 
