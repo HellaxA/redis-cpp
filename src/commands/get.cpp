@@ -16,7 +16,7 @@ std::string Get(std::vector<std::string>& input, Store& store) {
     auto opt = store.Get(key);
 
     if (opt.has_value()) {
-        return ConvertToSimpleString(opt.value());
+        return ConvertToBulkString(opt.value());
     }
     return NULL_BULK_STRING;
 }
