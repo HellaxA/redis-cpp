@@ -12,13 +12,14 @@
 #include "../store/store.hpp"
 #include "../constants.hpp"
 
+inline int MIN_ARG_NUM = 2;
 std::string HandleCommand(std::string& input, Store& store) {
     char data_type = input[0];
 
     if (data_type == '*') {
         std::vector<std::string> input_vector = ParseArray(input);
         // TODO return error
-        if (input_vector.size() < 2) {
+        if (input_vector.size() < MIN_ARG_NUM) {
             return NULL_BULK_STRING;
         }
 
@@ -29,7 +30,6 @@ std::string HandleCommand(std::string& input, Store& store) {
         } else if (ToLower(input_vector.at(2)) == "get") {
             return Get(input_vector, store);
         }
-
     }
 
     return ConvertToSimpleString("PONG");
