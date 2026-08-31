@@ -18,10 +18,6 @@ std::string HandleCommand(std::string& input, Store& store) {
 
     if (data_type == '*') {
         std::vector<std::string> input_vector = ParseArray(input);
-        // TODO return error
-        if (input_vector.size() < MIN_ARG_NUM) {
-            return NULL_BULK_STRING;
-        }
 
         if (ToLower(input_vector.at(2)) == "echo") {
             return Echo(input_vector);
