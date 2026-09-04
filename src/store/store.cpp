@@ -5,7 +5,7 @@
 #include <unordered_map>
 #include <iostream>
 
-void Store::Set(const std::string& key, const std::string& value,
+void Store::Set(const std::string& key, const RedisValue& value,
         std::optional<std::chrono::milliseconds> ttl) { 
 
     std::optional<std::chrono::steady_clock::time_point> expiry = std::nullopt;
@@ -26,7 +26,7 @@ void Store::Set(const std::string& key, const std::string& value,
     data_[key] = ValueEntry{value, expiry};
 }
 
-std::optional<std::string> Store::Get(const std::string& key) {
+std::optional<RedisValue> Store::Get(const std::string& key) {
     auto pair = data_.find(key);
 
     if (pair == data_.end()) {

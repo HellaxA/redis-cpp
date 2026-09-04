@@ -12,7 +12,7 @@ asio::awaitable<void> Listener(asio::io_context& io_context, unsigned short port
     tcp::acceptor acceptor(io_context, {tcp::v4(), port});
     std::cout << "Waiting for a client to connect...\n";
     std::cout << "Logs from your program will appear here!\n";
-    Store store;
+    Store store{};
 
     for (;;) {
         tcp::socket socket = co_await acceptor.async_accept(asio::use_awaitable);
