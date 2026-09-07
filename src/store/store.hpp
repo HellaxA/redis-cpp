@@ -5,19 +5,20 @@
 #include <optional>
 #include <variant>
 
-using RedisValue = std::variant<std::string, std::vector<std::string>>;
+using ActualValue = std::variant<std::string, std::vector<std::string>>;
 
-struct ValueEntry {
-    RedisValue value;
+struct MapValue {
+    ActualValue value;
     std::optional<std::chrono::steady_clock::time_point> expiry;
 };
 
 class Store {
     public:
-        void Set(const std::string& key, const RedisValue& value,
+        void Set(const std::string& key, const ActualValue& value,
                 std::optional<std::chrono::milliseconds> ttl = std::nullopt);
-        std::optional<RedisValue> Get(const std::string& key);
+        std::optional<ActualValue> Get(const std::string& key);
+        std::optional<size_t> Rpush(const std::string& key, const std::string& value);
 
     private:
-        std::unordered_map<std::string, ValueEntry> data_;
+        std::unordered_map<std::string, MapValue> data_;
 };
